@@ -31,7 +31,7 @@ const port = 3000;
 // SHOW Route
 // send data to 'missions/show.ejs' view
 // the view should display all the data for a single mission
-
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.get('/index', function(request, response) {
   response.render('missions/index.ejs', {
@@ -39,7 +39,6 @@ app.get('/index', function(request, response) {
   });
 });
 app.get('/show/:index', function(request, response) {
-  app.use(express.static('public'));
   response.render('missions/show.ejs', {
     marsMissions: marsMissions[request.params.index].name,
     launchDate: marsMissions[request.params.index].launchDate,
