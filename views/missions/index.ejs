@@ -1,29 +1,7 @@
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-
 <ul>
-	<li class="1"><a href="/show"><%=marsMissions[0].name%></a></li>
-	<li class="2"><a href="/show"><%=marsMissions[1].name%></a></li>
-	<li class="3"><a href="/show"><%=marsMissions[2].name%></a></li>
-	<li class="4"><a href="/show"><%=marsMissions[3].name%></a></li>
-	<li class="5"><a href="/show"><%=marsMissions[4].name%></a></li>
+	<li class="1"><a href="/show/0"><%=marsMissions[0].name%></a></li>
+	<li class="2"><a href="/show/1"><%=marsMissions[1].name%></a></li>
+	<li class="3"><a href="/show/2"><%=marsMissions[2].name%></a></li>
+	<li class="4"><a href="/show/3"><%=marsMissions[3].name%></a></li>
+	<li class="5"><a href="/show/4"><%=marsMissions[4].name%></a></li>
 </ul>
-<script>
-  $('.1').click(function() {
-    <%=show(0)%>
-  });
-  $('.2').click(function() {
-    <%=missionNumber=1%>
-  });
-  $('.3').click(function() {
-    <%=missionNumber=2%>
-  });
-  $('.4').click(function() {
-    <%=missionNumber=3%>
-  });
-  $('.5').click(function() {
-    <%=missionNumber=4%>
-  });
-</script>
