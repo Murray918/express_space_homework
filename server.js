@@ -1,5 +1,6 @@
 // DEPENDENCIES
 const express = require('express');
+const marsMissions = require('./models/marsMissions')
 const app = express();
 
 
@@ -13,10 +14,8 @@ const app = express();
 // * Bonus/Hungry for More: add images to the data and have them display (google how)
 // * Bonus/Hungry for More: add static css to style the pages (google how)
 
-
 // PORT
 const PORT = 3000;
-app.listen(PORT)
 
 
 
@@ -38,8 +37,10 @@ app.get('/', (req, res)=> {
 
 
 // LISTENER
-app.listen(port, function() {
-  console.log('Missions to Mars running on port: ', port);
+app.listen(PORT, function() {
+  console.log('Missions to Mars running on port: ', PORT);
 })
+
+
 
 module.exports = app;
