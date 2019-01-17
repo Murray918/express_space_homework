@@ -40,11 +40,7 @@ app.get('/missions', function(request, response) {
 });
 app.get('/missions/:index', function(request, response) {
   response.render('missions/show.ejs', {
-    marsMissions: marsMissions[request.params.index].name,
-    launchDate: marsMissions[request.params.index].launchDate,
-    operator: marsMissions[request.params.index].operator,
-    missionType: marsMissions[request.params.index].missionType,
-    img: marsMissions[request.params.index].img
+    marsMissions: marsMissions[request.params.index]
   });
 });
 // LISTENER
