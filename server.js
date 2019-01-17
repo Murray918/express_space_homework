@@ -1,15 +1,16 @@
 // DEPENDENCIES
 const express = require('express');
-const app = express();
-let ejs = require('ejs');
-let marsMissions = require('./models/marsMissions.js');
+let app = express();
+const ejs = require('ejs');
+const marsMissions = require('./models/marsMissions.js');
+const path = require('path');
 
 // PORT
 const port = 3000;
 
 // INDEX Route
 // the view displays just the names of each mission
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.get('/missions', function(request, response) {
 	response.render('missions/index.ejs', {
