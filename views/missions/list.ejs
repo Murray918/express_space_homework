@@ -1,0 +1,8 @@
+<h1>MARS MISSONS</h1>
+<ul>
+    <% component.map((mission, index) => { %>
+    <li>
+        <a href='<%= index %>'><%= mission.name %></a>
+    </li>
+    <% }); %>
+</ul>

@@ -3,17 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Space Express Homework</title>
+    <link rel="stylesheet" type="text/css" href="<%= cssPath %>">
 </head>
 
 <body>
-    <ul>
-        <% marsMissions.map((mission) => { %>
-        <li>
-            <a href='<%- include("show") %>'><%= mission.name %></a>
-        </li>
-        <% }); %>
-    </ul>
+    <div><%- include(page, { component }) %></div>
 </body>
 
 </html>

@@ -20,13 +20,16 @@ const express = require('express');
 // DATA - put into marsMissions.js file inside of a models folder, for module.exports
 // remember to require it in the server
 const marsMissions = require('./models/marsMissions.js')
-
-const app = express();
-
-// PORT
+const path = require('path')
 const PORT = 3000;
 
-app.set('view engine', 'ejs') // this replaces (default template engine that comes with Express) with ejs
+let app = express();
+
+
+// this links our server to a static public directory
+app.use(express.static(path.join(__dirname, 'public')))
+// this replaces (default template engine that comes with Express) with ejs
+app.set('view engine', 'ejs') 
 
 
 // INDEX Route
@@ -34,20 +37,30 @@ app.set('view engine', 'ejs') // this replaces (default template engine that com
 // the view should display just the names of each mission
 // display the mission names as <li> in a <ul> with the class name "missions"
 app.get('/', (request, response) => {
-response.render('missions/index.ejs', { marsMissions })
+    response.render('missions/index.ejs', {
+        component: marsMissions,
+        page: 'list',
+        cssPath: 'css/style.css'
+    })
 })
 // SHOW Route
 // send data to 'missions/show.ejs' view
 // the view should display all the data for a single mission
-app.get('/:mission', (request, response) => {
-response.render('missions/show.ejs', { marsMissions })
+app.get('/:index', (request, response) => {
+    let missionId = request.params.index
+    response.render('missions/index.ejs', {
+        component: marsMissions[missionId],
+        page: 'show',
+        cssPath: '/css/style.css'
+
+    })
 })
 
 
 
 // LISTENER
 app.listen(PORT, function() {
-  console.log('Missions to Mars running on port: ', PORT);
+    console.log('Missions to Mars running on port: ', PORT);
 })
 
 module.exports = app;

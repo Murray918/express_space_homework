@@ -1,0 +1,31 @@
+body {
+	text-align: center;
+	background-color: #8E6A5A;
+	color: #FF9D6F;
+}
+
+img {
+	max-height: 400px;
+}
+
+h1 {
+	font-size: 6vw; 
+}
+
+li {
+	list-style-type: none;
+	list-style: none;
+	font-size: 3vw;
+}
+ul {
+	padding-left: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #C67B5C;
+}
+
+a:hover {
+	color: #E27B58;
+}
