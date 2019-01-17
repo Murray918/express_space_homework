@@ -1,7 +1,43 @@
 // DEPENDENCIES
 const express = require('express');
 const marsMissions = require('./models/marsMissions')
+const path = require('path')
 const app = express();
+app.use(express.static(path.join(__dirname, 'public')))
+app.set('view engine', 'ejs')
+
+
+
+// INDEX Route
+// send data to 'missions/index.ejs' view
+// the view should display just the names of each mission
+// display the mission names as <li> in a <ul> with the class name "missions"
+app.get('/', (req, res)=> {
+  res.render('missions/index', { 
+    thing: marsMissions,
+    page: 'list',
+    cssPath: 'css/style.css'
+  })
+})
+
+
+
+// SHOW Route
+// send data to 'missions/show.ejs' view
+// the view should display all the data for a single mission
+app.get('/show/:id', (req, res)=> {
+  res.render('missions/show.ejs', { 
+    thing: marsMissions[req.params.id],
+    page: 'show',
+    cssPath: 'css/style.css'
+  })
+})
+
+
+app.get('/missions', (req, res)=> {
+  res.send(marsMissions)
+})
+
 
 
 // * Your mission is to complete the app
@@ -17,22 +53,6 @@ const app = express();
 // PORT
 const PORT = 3000;
 
-
-
-// INDEX Route
-// send data to 'missions/index.ejs' view
-// the view should display just the names of each mission
-// display the mission names as <li> in a <ul> with the class name "missions"
-app.get('/', (req, res)=> {
-  res.send(marsMissions)
-})
-
-
-
-
-// SHOW Route
-// send data to 'missions/show.ejs' view
-// the view should display all the data for a single mission
 
 
 
