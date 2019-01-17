@@ -1,8 +1,44 @@
 // DEPENDENCIES
 const express = require('express');
+const marsMissions = require('./models/marsMissions')
+const path = require('path')
 const app = express();
+app.use(express.static(path.join(__dirname, 'public')))
+app.set('view engine', 'ejs')
 
-// run `npm install` to install dependencies in package.json
+
+
+// INDEX Route
+// send data to 'missions/index.ejs' view
+// the view should display just the names of each mission
+// display the mission names as <li> in a <ul> with the class name "missions"
+app.get('/', (req, res)=> {
+  res.render('missions/index', { 
+    thing: marsMissions,
+    page: 'list',
+    cssPath: 'css/style.css'
+  })
+})
+
+
+
+// SHOW Route
+// send data to 'missions/show.ejs' view
+// the view should display all the data for a single mission
+app.get('/show/:id', (req, res)=> {
+  res.render('missions/show.ejs', { 
+    thing: marsMissions[req.params.id],
+    page: 'show',
+    cssPath: 'css/style.css'
+  })
+})
+
+
+app.get('/missions', (req, res)=> {
+  res.send(marsMissions)
+})
+
+
 
 // * Your mission is to complete the app
 // * The app will need routes for index and show
@@ -14,68 +50,17 @@ const app = express();
 // * Bonus/Hungry for More: add images to the data and have them display (google how)
 // * Bonus/Hungry for More: add static css to style the pages (google how)
 
-// NOTES:
-// ejs has not been installed
-// views folder has not been created
-// views/missions folder has not been created
-
 // PORT
-const port = 3000;
+const PORT = 3000;
 
-// DATA - put into marsMissions.js file inside of a models folder, for module.exports
-// remember to require it in the server
-const marsMissions = [
-  {
-    name: "Curiosity",
-    launchDate: "26 Nov 2011",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Opportunity",
-    launchDate: "8 Jul 2003",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Spirit",
-    launchDate: "10 Jun 2003",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Sojourner",
-    launchDate: "4 Dec 1996",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Rosetta",
-    launchDate: "2 Mar 2004",
-    operator: "ESA",
-    missionType: "Gravity Assist",
-    img: ""
-  }
-];
-
-// INDEX Route
-// send data to 'missions/index.ejs' view
-// the view should display just the names of each mission
-// display the mission names as <li> in a <ul> with the class name "missions"
-
-// SHOW Route
-// send data to 'missions/show.ejs' view
-// the view should display all the data for a single mission
 
 
 
 // LISTENER
-app.listen(port, function() {
-  console.log('Missions to Mars running on port: ', port);
+app.listen(PORT, function() {
+  console.log('Missions to Mars running on port: ', PORT);
 })
+
+
 
 module.exports = app;
