@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <ul>
+        <% marsMissions.map((mission) => { %>
+        <li>
+            <a href='<%- include("show") %>'><%= mission.name %></a>
+        </li>
+        <% }); %>
+    </ul>
+</body>
+
+</html>
