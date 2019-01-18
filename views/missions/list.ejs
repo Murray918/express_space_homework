@@ -1,0 +1,13 @@
+
+	<section class="container">
+		<h1>MISSION TO MARZ</h1>
+	<ul class="mission-list">
+		<% component.map((mission, index)=> {%>
+			<li class="mission">
+				<a href="/show/<%= index %>" class="link">
+					<h2 class="name"><%= mission.name %></h2>
+				</a>
+			</li>
+		<%})%>
+	</ul>
+</section>
