@@ -1,0 +1,22 @@
+img {
+	width: 70%;
+	height: 70%;
+	display: block;
+	margin: 0 auto;
+}
+body {
+	text-align: center;
+	background-color: rgb(170, 170, 170);
+}
+ul {
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+li {
+	font-size: 50px;
+	background-color: rgb(201, 201, 201);
+}
+
