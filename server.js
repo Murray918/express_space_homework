@@ -1,81 +1,53 @@
-// DEPENDENCIES
+//All of our requires are giving access to the objects in the files
 const express = require('express');
-const app = express();
+const ejs = require('ejs')
+const path = require('path')
 
-// run `npm install` to install dependencies in package.json
+//creating a reference AND accessing objects from the marsMissions.js
+const missions = require('./models/marsMissions')
 
-// * Your mission is to complete the app
-// * The app will need routes for index and show
-// * The app will need views for index and show
-//
-// * MAIN GOAL:
-// * User should be able to click on a mission’s name on the index page, and be taken to that mission’s show page
-//
-// * Bonus/Hungry for More: add images to the data and have them display (google how)
-// * Bonus/Hungry for More: add static css to style the pages (google how)
+//short hand to use express functions
+const app = express()
 
-// NOTES:
-// ejs has not been installed
-// views folder has not been created
-// views/missions folder has not been created
-
-// PORT
+//creating short for what port we'll be accessing the server from
 const port = 3000;
 
-// DATA - put into marsMissions.js file inside of a models folder, for module.exports
-// remember to require it in the server
-const marsMissions = [
-  {
-    name: "Curiosity",
-    launchDate: "26 Nov 2011",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Opportunity",
-    launchDate: "8 Jul 2003",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Spirit",
-    launchDate: "10 Jun 2003",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Sojourner",
-    launchDate: "4 Dec 1996",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Rosetta",
-    launchDate: "2 Mar 2004",
-    operator: "ESA",
-    missionType: "Gravity Assist",
-    img: ""
-  }
-];
+//Using express to set our viewport to use EJS 
+app.set('view engine', 'ejs')
 
-// INDEX Route
-// send data to 'missions/index.ejs' view
-// the view should display just the names of each mission
-// display the mission names as <li> in a <ul> with the class name "missions"
 
-// SHOW Route
-// send data to 'missions/show.ejs' view
-// the view should display all the data for a single mission
+//This function is getting access to the server by first sending our route which is set to '/'. Then we create a function that uses request and respond as parameters.
+app.get('/', (req, res) => {
+      //rendering the index.ejs file so we can visual it in our HTML.
+      res.render('missions/index',{
 
+      //objectives is a key value within the renders second parameter. It's value is that of missions which links back to our marsMissions array of objects.
+      objectives: missions,
+
+      //path is a key with the value of a string called 'list' which is our list.ejs file (which is used in the index.ejs file)
+      path: 'list',
+
+    })
+})
+
+//we are getting the show.ejs file and i'm not sure what the :id is doing yet. Though I believe it's setting the a tags href to the value of the array within the marsMissions.js. So if 5 objects are in the array than each a href will equal between 0 and 5.
+app.get('/show/:id',(req,res)=>{
+    //rendering the index.ejs file
+    res.render('missions/index',{
+
+    //accessing the marsMissions array and setting the array elements to whatever id becomes.
+    objectives: missions[req.params.id],
+    
+    //establishing that show.ejs is the file we will go to when a mission is clicked
+    path: 'show',
+
+  })
+})
 
 
 // LISTENER
 app.listen(port, function() {
-  console.log('Missions to Mars running on port: ', port);
+    console.log('Missions to Mars running on port: ', port);
 })
 
 module.exports = app;

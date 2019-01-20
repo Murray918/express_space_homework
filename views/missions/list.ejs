@@ -1,0 +1,14 @@
+<section class="container">
+
+	<ul class="mission-list">
+		<!--I got help with this section and will attempt to describe it.
+
+		objects.map is returning to us a new array with a function that takes mission and index as parameters. These parameters are used when creating a link to the index and mission names-->
+		<% objectives.map((mission, index)=> {%> 
+		<li> 
+			<a href="/show/<%= index %>"> <h2> <%= mission.name %> </h2> </a> 
+		</li> 
+
+		<%})%>
+	</ul>
+</section>
