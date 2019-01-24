@@ -40,7 +40,7 @@ app.get('/', (request, response) => {
     response.render('missions/index.ejs', {
         component: marsMissions,
         page: 'list',
-        cssPath: 'css/style.css'
+        cssPath: '/css/style.css'
     })
 })
 // SHOW Route
@@ -48,6 +48,7 @@ app.get('/', (request, response) => {
 // the view should display all the data for a single mission
 app.get('/:index', (request, response) => {
     let missionId = request.params.index
+    console.log(marsMissions[missionId])
     response.render('missions/index.ejs', {
         component: marsMissions[missionId],
         page: 'show',
