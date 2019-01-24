@@ -1,7 +1,3 @@
-// DEPENDENCIES
-const express = require('express');
-const app = express();
-
 // run `npm install` to install dependencies in package.json
 
 // * Your mission is to complete the app
@@ -19,63 +15,53 @@ const app = express();
 // views folder has not been created
 // views/missions folder has not been created
 
-// PORT
-const port = 3000;
-
+// DEPENDENCIES
+const express = require('express');
 // DATA - put into marsMissions.js file inside of a models folder, for module.exports
 // remember to require it in the server
-const marsMissions = [
-  {
-    name: "Curiosity",
-    launchDate: "26 Nov 2011",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Opportunity",
-    launchDate: "8 Jul 2003",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Spirit",
-    launchDate: "10 Jun 2003",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Sojourner",
-    launchDate: "4 Dec 1996",
-    operator: "NASA",
-    missionType: "Rover",
-    img: ""
-  },
-  {
-    name: "Rosetta",
-    launchDate: "2 Mar 2004",
-    operator: "ESA",
-    missionType: "Gravity Assist",
-    img: ""
-  }
-];
+const marsMissions = require('./models/marsMissions.js')
+const path = require('path')
+const PORT = 3000;
+
+let app = express();
+
+
+// this links our server to a static public directory
+app.use(express.static(path.join(__dirname, 'public')))
+// this replaces (default template engine that comes with Express) with ejs
+app.set('view engine', 'ejs') 
+
 
 // INDEX Route
 // send data to 'missions/index.ejs' view
 // the view should display just the names of each mission
 // display the mission names as <li> in a <ul> with the class name "missions"
-
+app.get('/', (request, response) => {
+    response.render('missions/index.ejs', {
+        component: marsMissions,
+        page: 'list',
+        cssPath: '/css/style.css'
+    })
+})
 // SHOW Route
 // send data to 'missions/show.ejs' view
 // the view should display all the data for a single mission
+app.get('/:index', (request, response) => {
+    let missionId = request.params.index
+    console.log(marsMissions[missionId])
+    response.render('missions/index.ejs', {
+        component: marsMissions[missionId],
+        page: 'show',
+        cssPath: '/css/style.css'
+
+    })
+})
 
 
 
 // LISTENER
-app.listen(port, function() {
-  console.log('Missions to Mars running on port: ', port);
+app.listen(PORT, function() {
+    console.log('Missions to Mars running on port: ', PORT);
 })
 
 module.exports = app;
