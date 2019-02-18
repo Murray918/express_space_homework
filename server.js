@@ -22,10 +22,10 @@ const port = 3000;
 // display the mission names as <li> in a <ul> with the class name "missions"
 
 app.get('/', (request, response) => {
-  response.render('missions/index', {
-    missions: marsMissions,
-    page:'list.ejs'
-  })
+    response.render('missions/index', {
+        missions: marsMissions,
+        page: 'list.ejs'
+    })
 })
 
 
@@ -34,15 +34,15 @@ app.get('/', (request, response) => {
 // the view should display all the data for a single mission
 
 app.get('/show/:id', (request, response) => {
-  response.render('missions/index', {
-    missions: marsMissions[request.params.id], 
-    page:'show.ejs'
-  })
+    response.render('missions/index', {
+        missions: marsMissions[request.params.id],
+        page: 'show.ejs'
+    })
 })
 
 // LISTENER
 app.listen(port, function() {
-  console.log('Missions to Mars running on port: ', port);
+    console.log('Missions to Mars running on port: ', port);
 })
 
 module.exports = app;
