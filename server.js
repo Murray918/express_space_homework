@@ -1,7 +1,7 @@
 //All of our requires are giving access to the objects in the files
 const express = require('express');
 const ejs = require('ejs')
-const path = require('path')
+
 
 //creating a reference AND accessing objects from the marsMissions.js
 const missions = require('./models/marsMissions')
