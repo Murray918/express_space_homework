@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>space</title>
+</head>
+<body>
+
+
+
+	<h1>Ghosts of Mars</h1>
+	<div>
+		<!-- A scriptlet with an include that establishes a link from the index.ejs and show.ejs file to the server.js files app.get functions render object's key path with value 'list' which injects the code from list.ejs here. 
+
+		I am unsure what the object does here. I believe we are simply injecting the path HTML in the div and than we are saying that there is an objectives object within the index.ejs file. That will allow our list.ejs to find the objectives and render it.-->
+		<%- include(path, { objectives }) %>
+	</div>
+
+
+</body>
+</html>
